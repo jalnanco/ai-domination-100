@@ -117,6 +117,71 @@
     font-weight: 700;
     font-size: 1.05em;
   }
+
+  .section-nanko { background: rgba(168,85,247,0.2); color: #c084fc; }
+  .section-battle { background: rgba(239,68,68,0.2); color: #f87171; }
+
+  /* Dice roller */
+  .dice-area {
+    text-align: center;
+    margin: 30px 0;
+    padding: 25px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(167,139,250,0.2);
+    border-radius: 16px;
+  }
+
+  .dice-btn {
+    background: linear-gradient(135deg, #a78bfa, #06b6d4);
+    color: #0a0a0f;
+    border: none;
+    padding: 14px 40px;
+    font-size: 1.3em;
+    font-weight: 900;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Noto Sans KR';
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .dice-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(167,139,250,0.4); }
+  .dice-btn:active { transform: scale(0.97); }
+
+  .dice-result {
+    margin-top: 20px;
+    font-size: 1.1em;
+    color: #cbd5e1;
+    min-height: 50px;
+  }
+
+  .dice-number {
+    font-size: 4em;
+    font-weight: 900;
+    background: linear-gradient(135deg, #fbbf24, #ef4444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: popIn 0.3s ease-out;
+  }
+
+  .dice-item-name {
+    font-size: 1.4em;
+    color: #e0e0e0;
+    margin-top: 8px;
+    font-weight: 700;
+  }
+
+  @keyframes popIn {
+    from { transform: scale(0.5) rotate(-10deg); opacity: 0; }
+    to { transform: scale(1) rotate(0); opacity: 1; }
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+  }
+
+  .shaking { animation: shake 0.1s ease-in-out 4; }
 </style>
 </head>
 <body>
@@ -163,7 +228,7 @@
   <div class="item"><span class="num">28</span><span class="stars">⭐</span><span class="text">내 인생을 애니 OP 가사로</span></div>
   <div class="item"><span class="num">29</span><span class="stars">⭐⭐</span><span class="text">AI가 쓴 라노벨 1화</span></div>
   <div class="item"><span class="num">30</span><span class="stars">⭐</span><span class="text">내 최애 캐릭터에게 편지 쓰기</span></div>
-  <div class="item"><span class="num">31</span><span class="stars">⭐⭐</span><span class="text">애니 vs 실사 이미지 변환</span></div>
+  <div class="item"><span class="num">31</span><span class="stars">⭐</span><span class="text">"이 캐릭터가 한국 군대 가면" — 보직 배정</span></div>
   <div class="item"><span class="num">32</span><span class="stars">⭐</span><span class="text">"이 캐릭터가 회사원이라면"</span></div>
   <div class="item"><span class="num">33</span><span class="stars">⭐</span><span class="text">웹툰 스토리 즉석 생성</span></div>
   <div class="item"><span class="num">34</span><span class="stars">⭐</span><span class="text">애니 장면을 롤 상황으로 번역</span></div>
@@ -220,35 +285,45 @@
 
 <div class="section-title section-wow">🤯 와우 팩터 / 고난이도 (76~90)</div>
 <div class="grid">
-  <div class="item"><span class="num">76</span><span class="stars">⭐⭐</span><span class="text">실시간 이미지 생성</span></div>
-  <div class="item"><span class="num">77</span><span class="stars">⭐⭐⭐</span><span class="text">음성→요약 메타 데모</span></div>
-  <div class="item"><span class="num">78</span><span class="stars">⭐⭐</span><span class="text">코드→게임 30초 (뱀 게임 등)</span></div>
-  <div class="item"><span class="num">79</span><span class="stars">⭐⭐</span><span class="text">AI끼리 토론 — GPT vs Claude</span></div>
-  <div class="item"><span class="num">80</span><span class="stars">⭐⭐</span><span class="text">가짜 뉴스 생성 + AI 판별</span></div>
-  <div class="item"><span class="num">81</span><span class="stars">⭐</span><span class="text">AI 작사 — LCK 응원가</span></div>
-  <div class="item"><span class="num">82</span><span class="stars">⭐⭐⭐⭐</span><span class="text">실시간 디코봇 제작 → 이 서버에 배포</span></div>
-  <div class="item"><span class="num">83</span><span class="stars">⭐⭐⭐⭐</span><span class="text">AI 음성 클론 — 내 목소리로 다른 문장</span></div>
-  <div class="item"><span class="num">84</span><span class="stars">⭐⭐⭐⭐⭐</span><span class="text">멀티 AI 파이프라인 (텍스트→이미지→음성)</span></div>
-  <div class="item"><span class="num">85</span><span class="stars">⭐⭐⭐⭐⭐</span><span class="text">AI 에이전트 — 자율 검색→분석→보고서</span></div>
-  <div class="item"><span class="num">86</span><span class="stars">⭐</span><span class="text">롤 챔프 요리 레시피 (이즈리얼의 한 손 요리)</span></div>
-  <div class="item"><span class="num">87</span><span class="stars">⭐⭐⭐</span><span class="text">AI 주식/코인 차트 분석</span></div>
-  <div class="item"><span class="num">88</span><span class="stars">⭐</span><span class="text">"내 롤 아이디로 전생 분석"</span></div>
-  <div class="item"><span class="num">89</span><span class="stars">⭐⭐⭐⭐</span><span class="text">MCP — AI가 캘린더/DB/GitHub 직접 조작</span></div>
-  <div class="item"><span class="num">90</span><span class="stars">⭐⭐⭐</span><span class="text">AI가 AI를 평가 (메타)</span></div>
+  <div class="item"><span class="num">76</span><span class="stars">⭐⭐</span><span class="text">코드→게임 30초 (뱀 게임, 테트리스 등)</span></div>
+  <div class="item"><span class="num">77</span><span class="stars">⭐⭐</span><span class="text">AI끼리 토론 — GPT vs Claude 같은 질문 대결</span></div>
+  <div class="item"><span class="num">78</span><span class="stars">⭐⭐</span><span class="text">"페이커 은퇴" 가짜 뉴스 생성 → AI가 판별</span></div>
+  <div class="item"><span class="num">79</span><span class="stars">⭐</span><span class="text">AI 작사 — LCK 응원가 / 서버 찬가</span></div>
+  <div class="item"><span class="num">80</span><span class="stars">⭐⭐⭐⭐</span><span class="text">실시간 디코봇 제작 → 이 서버에 배포</span></div>
+  <div class="item"><span class="num">81</span><span class="stars">⭐⭐⭐⭐⭐</span><span class="text">AI 에이전트 — 자율 검색→분석→보고서</span></div>
+  <div class="item"><span class="num">82</span><span class="stars">⭐</span><span class="text">롤 챔프 요리 레시피 (이즈리얼의 한 손 요리)</span></div>
+  <div class="item"><span class="num">83</span><span class="stars">⭐⭐⭐</span><span class="text">AI 주식/코인 차트 분석 (면책 포함)</span></div>
+  <div class="item"><span class="num">84</span><span class="stars">⭐</span><span class="text">"내 롤 아이디로 전생 분석"</span></div>
+  <div class="item"><span class="num">85</span><span class="stars">⭐⭐⭐⭐</span><span class="text">MCP — AI가 캘린더/DB/GitHub 직접 조작</span></div>
+  <div class="item"><span class="num">86</span><span class="stars">⭐⭐⭐</span><span class="text">AI가 AI를 평가 — Claude가 GPT 채점</span></div>
+  <div class="item"><span class="num">87</span><span class="stars">⭐⭐</span><span class="text">좋아하는 챔프로 연애 시뮬레이션 (게임)</span></div>
+  <div class="item"><span class="num">88</span><span class="stars">⭐⭐</span><span class="text">AI가 예측하는 이번 LCK 플오 결과</span></div>
+  <div class="item"><span class="num">89</span><span class="stars">⭐</span><span class="text">AI가 쓴 LCK 선수 은퇴식 멘트</span></div>
+  <div class="item"><span class="num">90</span><span class="stars">⭐</span><span class="text">챔프 대사를 다른 챔프 말투로 변환</span></div>
 </div>
 
-<div class="section-title section-fun">😂 분위기/웃음 (91~100)</div>
+<div class="section-title section-nanko">🧑‍💻 난코의 TMI (91~95)</div>
 <div class="grid">
-  <div class="item"><span class="num">91</span><span class="stars">⭐</span><span class="text">AI 한계 테스트 — 안전장치 반응</span></div>
-  <div class="item"><span class="num">92</span><span class="stars">⭐</span><span class="text">"AI야 나 칭찬해줘" — 과도한 칭찬</span></div>
-  <div class="item"><span class="num">93</span><span class="stars">⭐</span><span class="text">AI 고민상담 — "여친이 롤 하지 말래"</span></div>
-  <div class="item"><span class="num">94</span><span class="stars">⭐⭐</span><span class="text">AI vs 사람 LCK 퀴즈 대결</span></div>
-  <div class="item"><span class="num">95</span><span class="stars">⭐</span><span class="text">닉네임만 보고 프로파일링</span></div>
-  <div class="item"><span class="num">96</span><span class="stars">⭐</span><span class="text">가장 쓸데없는 AI 활용법</span></div>
-  <div class="item"><span class="num">97</span><span class="stars">⭐</span><span class="text">AI 응원 배틀 — 칭찬 랩</span></div>
-  <div class="item"><span class="num">98</span><span class="stars">⭐</span><span class="text">1분 챌린지 — 참가자 폰으로 바로</span></div>
-  <div class="item"><span class="num">99</span><span class="stars">⭐</span><span class="text">AI 유언장 — "롤 계정은 누구에게"</span></div>
-  <div class="item"><span class="num">100</span><span class="stars">⭐</span><span class="text">AI가 쓴 오늘 강의 후기</span></div>
+  <div class="item"><span class="num">91</span><span class="stars">⭐</span><span class="text">난코의 첫사랑 이야기 — AI가 드라마로 재구성</span></div>
+  <div class="item"><span class="num">92</span><span class="stars">⭐⭐</span><span class="text">난코의 인생 그래프 — AI가 분석한 인생 곡선</span></div>
+  <div class="item"><span class="num">93</span><span class="stars">⭐⭐</span><span class="text">난코의 흑역사 발굴 — AI가 채팅에서 캐냄</span></div>
+  <div class="item"><span class="num">94</span><span class="stars">⭐</span><span class="text">난코가 AI한테 연애상담 받는 라이브</span></div>
+  <div class="item"><span class="num">95</span><span class="stars">⭐</span><span class="text">"AI가 본 난코" — 15년 개발자 성격 분석</span></div>
+</div>
+
+<div class="section-title section-battle">⚔️ 배틀/인터랙션 (96~100)</div>
+<div class="grid">
+  <div class="item"><span class="num">96</span><span class="stars">⭐⭐</span><span class="text">참가자 2명 AI 디베이트 — 찬반 토론 AI 판정</span></div>
+  <div class="item"><span class="num">97</span><span class="stars">⭐</span><span class="text">참가자 vs AI 말싸움 — 누가 더 논리적?</span></div>
+  <div class="item"><span class="num">98</span><span class="stars">⭐</span><span class="text">AI 역질문 성격 분석 — 3개 질문으로 판별</span></div>
+  <div class="item"><span class="num">99</span><span class="stars">⭐</span><span class="text">"누가 더 OO한가" AI 판정 배틀</span></div>
+  <div class="item"><span class="num">100</span><span class="stars">⭐</span><span class="text">AI가 쓴 오늘 강의 후기 + 참가자 MVP 선정</span></div>
+</div>
+
+<div class="dice-area">
+  <div style="font-size:1.1em; color:#94a3b8; margin-bottom:15px;">🎰 이치방 쿠지 — 랜덤 뽑기</div>
+  <button class="dice-btn" id="rollBtn" onclick="rollDice()">🎲 주사위 굴리기</button>
+  <div class="dice-result" id="diceResult"></div>
 </div>
 
 <div class="footer">
@@ -258,5 +333,43 @@
   <div class="discord">🎮 4/3(금) 19:30 · discord.gg/CfqghZq · 노가리방</div>
 </div>
 
+<script>
+const items = {
+  1:'롤 전적 AI 코칭 — "왜 지는지" 분석',2:'롤체 메타 분석 — 현 패치 티어리스트',3:'AI 밴픽 추천 — 상대 픽 기준 카운터',4:'LCK 선수 문체 분석',5:'AI가 쓴 LCK 실황 중계',6:'나만의 챔피언 설계 — 성격 기반',7:'게임 채팅 번역기 — 은어→외국인용',8:'스타 빌드오더 최적화',9:'AI 던전마스터 — 즉석 TRPG',10:'"내가 라이엇 밸런스팀이라면" — AI 패치노트',
+  11:'프로게이머 커리어 상담',12:'AI가 쓴 항복 투표 설득문 (논문체)',13:'롤 패치노트 요약 + 메타 예측',14:'AI 전략 코치 시뮬',15:'AI가 예측하는 이번 LCK 플오 결과',16:'AI가 만든 롤 퀴즈 — 대결',17:'AI가 만든 롤 로딩 팁 (웃긴 버전)',18:'AI 게임 리뷰어 — 3줄 리뷰',19:'롤 챔프별 추천 야식 메뉴',20:'롤 닉네임 작명기',
+  21:'MAL 기반 애니 추천',22:'이세카이 전생 오프닝 생성',23:'캐릭터 MBTI 분석',24:'명대사 → 인생 조언 변환',25:'내가 주술사라면 — 술식 생성',26:'원피스 현상금 책정',27:'AI 동인지 시놉시스 (건전)',28:'내 인생을 애니 OP 가사로',29:'AI가 쓴 라노벨 1화',30:'내 최애 캐릭터에게 편지 쓰기',
+  31:'"이 캐릭터가 한국 군대 가면" — 보직 배정',32:'"이 캐릭터가 회사원이라면"',33:'웹툰 스토리 즉석 생성',34:'애니 장면을 롤 상황으로 번역',35:'"이 애니 캐릭터의 틴더 프로필"',36:'애니 세계관 크로스오버 대결',37:'AI가 만든 애니 성지순례 코스',38:'일본어 애니 대사 뉘앙스 해석',39:'만화 컷 대사 생성',40:'다음 시즌 애니 히트작 예측',
+  41:'이력서 30초 첨삭',42:'퇴사 메일 작성기 (정중+시원)',43:'AI가 쓴 퇴사 후 복귀 시나리오 (드라마)',44:'소개팅 프로필 최적화',45:'배달 메뉴 결정기',46:'여행 계획 즉석 생성',47:'AI 변호사 — 월세/환불 상담',48:'게임 용어를 셰익스피어체로 번역',49:'"엄마 나 프로게이머 할래" AI 설득문',50:'참가자 메인 챔프 기반 칵테일 레시피',
+  51:'면접 예상 질문 20개 + 모범답안',52:'축의금/부의금 적정 금액 계산',53:'내 방을 애니 캐릭터 방으로 리모델링',54:'중고거래 가격 책정 (당근)',55:'"AI가 계산한 페이커의 추정 연봉 구조"',56:'롤 챔프 기반 운동 루틴 (가렌=스쿼트)',57:'좋아하는 챔프로 연애 시뮬레이션',58:'선물 추천기',59:'"롤 맵 부동산" — 탑/미드/봇 시세 분석',60:'AI가 쓴 "듀오 파트너 계약서"',
+  61:'디코 채팅 워드클라우드',62:'채팅 감정 그래프 — 시간대별',63:'"이 사람은 어떤 챔프?" 매칭',64:'참가자 2명 성격 → 듀오 챔프 추천',65:'■■■님 사생활 예측',66:'■■■님 성격 분석',67:'"AI가 본 이 서버" 분위기 요약',68:'참가자 궁합 매칭 — 듀오 시너지',69:'AI 타로 — 오늘의 LP 운세',70:'참가자 성격 유형 분류',
+  71:'AI가 본 난코 — 자기 분석 공개',72:'"채팅만 보고 롤 티어 맞춰봐"',73:'참가자 채팅 → 주술회전 캐릭터 배정',74:'"이 사람의 다음 한마디 예측"',75:'분석 결과 → 이세카이 파티 역할',
+  76:'코드→게임 30초 (뱀 게임 등)',77:'AI끼리 토론 — GPT vs Claude',78:'"페이커 은퇴" 가짜 뉴스 → AI 판별',79:'AI 작사 — LCK 응원가',80:'실시간 디코봇 제작 → 서버 배포',81:'AI 에이전트 — 자율 검색→보고서',82:'롤 챔프 요리 레시피 (이즈리얼)',83:'AI 주식/코인 차트 분석',84:'"내 롤 아이디로 전생 분석"',85:'MCP — AI가 캘린더/DB 직접 조작',
+  86:'AI가 AI를 평가',87:'좋아하는 챔프로 연애 시뮬',88:'AI가 예측하는 LCK 플오 결과',89:'LCK 선수 은퇴식 멘트',90:'챔프 대사를 다른 챔프 말투로',
+  91:'난코의 첫사랑 이야기 — AI 드라마화',92:'난코의 인생 그래프 — AI 분석',93:'난코의 흑역사 발굴',94:'난코가 AI한테 연애상담 라이브',95:'"AI가 본 난코" — 성격 분석',
+  96:'참가자 2명 AI 디베이트 — 판정',97:'참가자 vs AI 말싸움',98:'AI 역질문 성격 분석 — 3개 질문',99:'"누가 더 OO한가" AI 판정 배틀',100:'AI가 쓴 강의 후기 + MVP 선정'
+};
+
+function rollDice() {
+  const btn = document.getElementById('rollBtn');
+  const result = document.getElementById('diceResult');
+  btn.classList.add('shaking');
+  btn.disabled = true;
+  result.innerHTML = '<span style="font-size:2em;">🎲🎲🎲</span>';
+
+  let count = 0;
+  const flash = setInterval(() => {
+    const r = Math.floor(Math.random() * 100) + 1;
+    result.innerHTML = `<div class="dice-number">${r}</div>`;
+    count++;
+    if (count > 15) {
+      clearInterval(flash);
+      const final = Math.floor(Math.random() * 100) + 1;
+      result.innerHTML = `<div class="dice-number">${final}</div><div class="dice-item-name">${items[final]}</div>`;
+      btn.classList.remove('shaking');
+      btn.disabled = false;
+    }
+  }, 80);
+}
+</script>
 </body>
 </html>
