@@ -238,6 +238,9 @@ function spin(){
       rt.innerHTML=`<div class="result-win" style="animation:popIn 0.3s;">${r.label} #${ti} — ${items[ti]}</div>`;
       spawnStars(document.querySelector('.roulette-window'));
       rainEffect();
+      screenShake();
+      setTimeout(()=>runCharacter(),500);
+      setTimeout(()=>runCharacter(),1200);
       addHistory(ti);
       addMemo('🎉',`#${ti} ${r.icon} ${items[ti]}`,'#fbbf24');
       // 리스트에서 하이라이트
@@ -266,44 +269,121 @@ function addHistory(ti){
   area.prepend(d);
 }
 
-// 별 폭발 이펙트
+// 별 폭발 이펙트 (더 화려하게)
 function spawnStars(el){
   const rect=el.getBoundingClientRect();
   const cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;
-  const emojis=['⭐','✨','🌟','💫','🎉','🎊','🔥','💥','🏆','💎'];
-  for(let i=0;i<40;i++){
+  const emojis=['⭐','✨','🌟','💫','🎉','🎊','🔥','💥','🏆','💎','👑','🌈'];
+  // 1차 폭발
+  for(let i=0;i<60;i++){
     const s=document.createElement('div');
     s.textContent=emojis[Math.floor(Math.random()*emojis.length)];
-    s.style.cssText=`position:fixed;left:${cx}px;top:${cy}px;font-size:${Math.random()*28+14}px;pointer-events:none;z-index:9999;transition:all ${Math.random()*1.2+0.6}s ease-out;opacity:1;`;
+    s.style.cssText=`position:fixed;left:${cx}px;top:${cy}px;font-size:${Math.random()*32+14}px;pointer-events:none;z-index:9999;transition:all ${Math.random()*1.5+0.5}s cubic-bezier(0.25,0.46,0.45,0.94);opacity:1;`;
     document.body.appendChild(s);
     requestAnimationFrame(()=>{
-      s.style.left=cx+(Math.random()-0.5)*600+'px';
-      s.style.top=cy+(Math.random()-0.5)*500-150+'px';
+      s.style.left=cx+(Math.random()-0.5)*800+'px';
+      s.style.top=cy+(Math.random()-0.5)*600-200+'px';
       s.style.opacity='0';
-      s.style.transform=`scale(${Math.random()*1.5+0.5}) rotate(${Math.random()*720}deg)`;
+      s.style.transform=`scale(${Math.random()*2+0.5}) rotate(${Math.random()*1080}deg)`;
     });
-    setTimeout(()=>s.remove(),2200);
+    setTimeout(()=>s.remove(),2500);
   }
+  // 2차 지연 폭발
+  setTimeout(()=>{
+    for(let i=0;i<30;i++){
+      const s=document.createElement('div');
+      s.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+      s.style.cssText=`position:fixed;left:${cx+(Math.random()-0.5)*200}px;top:${cy+(Math.random()-0.5)*100}px;font-size:${Math.random()*24+10}px;pointer-events:none;z-index:9999;transition:all ${Math.random()*1+0.8}s ease-out;opacity:1;`;
+      document.body.appendChild(s);
+      requestAnimationFrame(()=>{
+        s.style.left=cx+(Math.random()-0.5)*1000+'px';
+        s.style.top=cy+(Math.random()-0.5)*700+'px';
+        s.style.opacity='0';
+        s.style.transform=`scale(0.3) rotate(${Math.random()*720}deg)`;
+      });
+      setTimeout(()=>s.remove(),2000);
+    }
+  },300);
 }
 
-// 위에서 우수수 내려오는 이펙트
+// 위에서 우수수 쏟아지는 별비 (더 많이, 더 화려하게)
 function rainEffect(){
-  const emojis=['⭐','✨','🌟','💫','🎊','💎','🏆'];
-  for(let i=0;i<50;i++){
+  const emojis=['⭐','✨','🌟','💫','🎊','💎','🏆','👑','🌈','🔮'];
+  for(let i=0;i<80;i++){
     setTimeout(()=>{
       const s=document.createElement('div');
       s.textContent=emojis[Math.floor(Math.random()*emojis.length)];
       const x=Math.random()*window.innerWidth;
-      s.style.cssText=`position:fixed;left:${x}px;top:-30px;font-size:${Math.random()*20+12}px;pointer-events:none;z-index:9998;transition:all ${Math.random()*2+1.5}s ease-in;opacity:0.9;`;
+      const size=Math.random()*24+10;
+      s.style.cssText=`position:fixed;left:${x}px;top:-40px;font-size:${size}px;pointer-events:none;z-index:9998;transition:all ${Math.random()*2.5+1.5}s ease-in;opacity:0.95;`;
       document.body.appendChild(s);
       requestAnimationFrame(()=>{
-        s.style.top=window.innerHeight+30+'px';
+        s.style.top=window.innerHeight+40+'px';
+        s.style.left=x+(Math.random()-0.5)*200+'px';
         s.style.opacity='0';
-        s.style.transform=`rotate(${Math.random()*360}deg)`;
+        s.style.transform=`rotate(${Math.random()*720}deg) scale(0.3)`;
       });
-      setTimeout(()=>s.remove(),4000);
-    },i*60);
+      setTimeout(()=>s.remove(),5000);
+    },i*40);
   }
+}
+
+// 캐릭터가 화면을 가로질러 달리는 이펙트
+const runChars=['🏃','🏃‍♂️','🐉','🦊','👻','🤖','🧙','⚡','🔥','🗡️','🎮','👾','🦸','🧛','🐱‍👤'];
+const runMsgs=['당첨!!','ㅋㅋㅋㅋ','GG','영역전개!','시전!','가보자고!','OP!','버프 받음','쌉가능','레전드'];
+function runCharacter(){
+  const ch=runChars[Math.floor(Math.random()*runChars.length)];
+  const msg=runMsgs[Math.floor(Math.random()*runMsgs.length)];
+  const fromLeft=Math.random()>0.5;
+  const y=Math.random()*60+10; // vh
+  const d=document.createElement('div');
+  d.innerHTML=`<span style="font-size:3em;">${ch}</span><span style="background:rgba(0,0,0,0.7);color:#fbbf24;padding:4px 12px;border-radius:20px;font-weight:900;font-size:1.1em;margin-left:8px;">${msg}</span>`;
+  d.style.cssText=`position:fixed;${fromLeft?'left:-200px':'right:-200px'};top:${y}vh;pointer-events:none;z-index:9997;display:flex;align-items:center;transition:all 2.5s cubic-bezier(0.25,0.1,0.25,1);white-space:nowrap;`;
+  if(!fromLeft)d.style.flexDirection='row-reverse';
+  document.body.appendChild(d);
+  requestAnimationFrame(()=>{
+    if(fromLeft)d.style.left=window.innerWidth+200+'px';
+    else d.style.right=window.innerWidth+200+'px';
+  });
+  setTimeout(()=>d.remove(),3000);
+}
+
+// 참가자 이름이 화면에 날아다니는 이펙트
+function flyName(name,color){
+  for(let i=0;i<3;i++){
+    setTimeout(()=>{
+      const d=document.createElement('div');
+      d.textContent=`🫵 ${name}`;
+      const x=Math.random()*window.innerWidth*0.6+window.innerWidth*0.2;
+      const y=Math.random()*window.innerHeight*0.6+window.innerHeight*0.1;
+      const size=Math.random()*1.5+1.5;
+      const rot=Math.random()*40-20;
+      d.style.cssText=`position:fixed;left:${x}px;top:${y}px;font-size:${size}em;font-weight:900;color:${color};pointer-events:none;z-index:9999;opacity:0;transition:all 0.4s ease-out;text-shadow:0 0 20px ${color}40;transform:scale(0.5) rotate(${rot}deg);`;
+      document.body.appendChild(d);
+      requestAnimationFrame(()=>{
+        d.style.opacity='1';
+        d.style.transform=`scale(1) rotate(${rot}deg)`;
+      });
+      setTimeout(()=>{
+        d.style.opacity='0';
+        d.style.transform=`scale(2) rotate(${rot+20}deg)`;
+      },1500);
+      setTimeout(()=>d.remove(),2200);
+    },i*400);
+  }
+}
+
+// 화면 흔들림 (짧고 강하게)
+function screenShake(){
+  document.body.style.transition='transform 0.05s';
+  let count=0;
+  const shake=setInterval(()=>{
+    const x=(Math.random()-0.5)*10;
+    const y=(Math.random()-0.5)*10;
+    document.body.style.transform=`translate(${x}px,${y}px)`;
+    count++;
+    if(count>8){clearInterval(shake);document.body.style.transform='none';}
+  },50);
 }
 
 // 메모
@@ -328,6 +408,15 @@ function addPerson(){
   people.push(n);i.value='';renderNames();
   document.getElementById('pickBtn').disabled=false;
   addMemo('📌',`${n}님 참전! (${people.length}명)`,'#fbbf24');
+  // 참전 이펙트 — 이름이 화면에 등장
+  const fc=nameColors[(people.length-1)%nameColors.length];
+  const d=document.createElement('div');
+  d.innerHTML=`<span style="font-size:2em;">⚔️</span> <span style="font-size:1.8em;font-weight:900;color:${fc};">${n}</span> <span style="color:#94a3b8;font-size:1.1em;">참전!</span>`;
+  d.style.cssText=`position:fixed;left:50%;top:40%;transform:translate(-50%,-50%) scale(0.3);pointer-events:none;z-index:9999;opacity:0;transition:all 0.5s cubic-bezier(0.34,1.56,0.64,1);white-space:nowrap;text-shadow:0 0 30px rgba(0,0,0,0.8);`;
+  document.body.appendChild(d);
+  requestAnimationFrame(()=>{d.style.opacity='1';d.style.transform='translate(-50%,-50%) scale(1)';});
+  setTimeout(()=>{d.style.opacity='0';d.style.transform='translate(-50%,-50%) scale(1.5)';},1200);
+  setTimeout(()=>d.remove(),1800);
 }
 function removePerson(name){
   people=people.filter(p=>p!==name);renderNames();
@@ -361,6 +450,9 @@ function pickPerson(){
       const fc=nameColors[people.indexOf(final)%nameColors.length];
       res.innerHTML=`<div style="font-size:2.5em;font-weight:900;color:${fc};animation:popIn 0.3s;">🫵 ${final}</div><div style="color:#94a3b8;font-size:0.9em;margin-top:4px;">각오하세요</div>`;
       spawnStars(document.getElementById('pickBtn'));
+      screenShake();
+      flyName(final,fc);
+      setTimeout(()=>runCharacter(),300);
       addMemo('🫵',`${final}님 당첨!`,'#fbbf24');
       picking=false;btn.disabled=false;
     }
