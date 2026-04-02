@@ -494,15 +494,31 @@
     <div class="result-text" id="resultText"></div>
   </div>
 
-  <div class="chat-area">
-    <div class="chat-header">💬 노가리방 임시 채팅</div>
-    <div class="chat-messages" id="chatMessages">
-      <div class="chat-msg"><span class="name" style="color:#fbbf24;">🤖 AI</span><span class="text-msg">강의 시작 전 워밍업 채팅방입니다!</span></div>
-      <div class="chat-msg"><span class="name" style="color:#fbbf24;">🤖 AI</span><span class="text-msg">보고 싶은 번호 채팅에 남겨주세요~</span></div>
+  <div style="display:flex; flex-direction:column; gap:15px; width:300px; min-width:300px;">
+    <!-- 참가자 룰렛 -->
+    <div class="chat-area" style="flex:none; height:auto; padding-bottom:0;">
+      <div class="chat-header">🎯 누가 할 거야?</div>
+      <div style="padding:10px;">
+        <div style="display:flex; gap:5px; margin-bottom:8px;">
+          <input class="chat-input" id="nameInput" placeholder="참가자 이름 추가..." onkeydown="if(event.key==='Enter')addPerson()" style="border-radius:6px;">
+          <button class="chat-send" onclick="addPerson()" style="border-radius:6px; white-space:nowrap;">추가</button>
+        </div>
+        <div id="nameList" style="display:flex; flex-wrap:wrap; gap:4px; margin-bottom:10px; min-height:24px;"></div>
+        <button class="dice-btn" onclick="pickPerson()" id="pickBtn" style="width:100%; padding:10px; font-size:1em;" disabled>🫵 누구?!</button>
+        <div id="pickResult" style="text-align:center; margin-top:10px; min-height:60px;"></div>
+      </div>
     </div>
-    <div class="chat-input-area">
-      <input class="chat-input" id="chatInput" placeholder="메시지 입력..." onkeydown="if(event.key==='Enter')sendChat()">
-      <button class="chat-send" onclick="sendChat()">전송</button>
+
+    <!-- 채팅 -->
+    <div class="chat-area" style="flex:1;">
+      <div class="chat-header">💬 노가리방 임시 채팅</div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="chat-msg"><span class="name" style="color:#fbbf24;">🤖 AI</span><span class="text-msg">보고 싶은 번호 채팅에 남겨주세요~</span></div>
+      </div>
+      <div class="chat-input-area">
+        <input class="chat-input" id="chatInput" placeholder="메시지 입력..." onkeydown="if(event.key==='Enter')sendChat()">
+        <button class="chat-send" onclick="sendChat()">전송</button>
+      </div>
     </div>
   </div>
 </div>
@@ -533,31 +549,20 @@ const items = {
   111:'참가자로 LCK 팀 편성',112:'강의 내용 시험 10문제',113:'맞춤 AI 활용법 리포트',114:'난코 1년 AI 데이터 시각화',115:'AI끼리 롤 밴픽 대결',116:'채팅 키워드 → AI 그림',117:'직관방/관전방 역사 연대기',118:'전원 애니 캐릭터 관계도',119:'"난코 평전" 위인전',120:'전원 2026 AI 운세'
 };
 
-const kkwang = [
-  '💀 난코가 10초 동안 아무 말 없이 카메라 응시',
-  '💀 참가자 전원 "난코 최고" 세 번 외치기',
-  '💀 난코가 좋아하는 애니 OP 1절 부르기',
-  '💀 다시 돌리되, 다음 건 무조건 실행!',
-  '💀 가장 먼저 이모지 보낸 사람이 다음 주제 지정',
-  '💀 참가자 중 한 명이 자기 흑역사 고백',
-  '💀 난코가 30초 안에 참가자 전원 닉네임 외우기',
-];
-
-const TOTAL=120, ITEM_H=80, KKWANG_RATE=0.12;
+const TOTAL=120, ITEM_H=80;
 let spinning=false;
 
-function buildStrip(targetIdx, isK) {
+function buildStrip(targetIdx) {
   const s=document.getElementById('strip'); s.innerHTML='';
   const N=60, stop=N-3;
   for(let i=0;i<N;i++){
     const d=document.createElement('div');
     d.className=i===stop?'roulette-item center':'roulette-item';
     if(i===stop){
-      if(isK){d.textContent='💀 꽝!';d.style.color='#ef4444';}
-      else d.textContent=`#${targetIdx} ${items[targetIdx]}`;
+      d.textContent=`#${targetIdx} ${items[targetIdx]}`;
     } else {
-      if(Math.random()<0.08){d.textContent='💀 꽝!';d.style.color='#ef4444';d.style.opacity='0.6';}
-      else{const r=Math.floor(Math.random()*TOTAL)+1;d.textContent=`#${r} ${items[r]}`;}
+      const r=Math.floor(Math.random()*TOTAL)+1;
+      d.textContent=`#${r} ${items[r]}`;
     }
     s.appendChild(d);
   }
@@ -568,8 +573,8 @@ function spin(){
   if(spinning)return; spinning=true;
   const sb=document.getElementById('spinBtn'),rb=document.getElementById('rerollBtn'),rt=document.getElementById('resultText');
   sb.disabled=true; rb.style.display='none'; rt.innerHTML='';
-  const isK=Math.random()<KKWANG_RATE, ti=Math.floor(Math.random()*TOTAL)+1;
-  const cp=buildStrip(ti,isK), s=document.getElementById('strip');
+  const ti=Math.floor(Math.random()*TOTAL)+1;
+  const cp=buildStrip(ti), s=document.getElementById('strip');
   s.style.transition='none'; s.style.transform='translateY(0)';
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
     const ty=-(cp*ITEM_H)+(240/2)-(ITEM_H/2);
@@ -577,14 +582,8 @@ function spin(){
     s.style.transform=`translateY(${ty}px)`;
     setTimeout(()=>{
       spinning=false; sb.disabled=false; rb.style.display='inline-block';
-      if(isK){
-        const kt=kkwang[Math.floor(Math.random()*kkwang.length)];
-        rt.innerHTML=`<div class="result-kkwang">${kt}</div>`;
-        addChat('🤖 AI','꽝!! '+kt,'#ef4444');
-      } else {
-        rt.innerHTML=`<div class="result-win">#${ti} — ${items[ti]}</div>`;
-        addChat('🤖 AI',`🎉 #${ti} 당첨! "${items[ti]}"`, '#fbbf24');
-      }
+      rt.innerHTML=`<div class="result-win">#${ti} — ${items[ti]}</div>`;
+      addChat('🤖 AI',`🎉 #${ti} 당첨! "${items[ti]}"`, '#fbbf24');
     },4200);
   }));
 }
@@ -606,7 +605,59 @@ function sendChat(){
   if(num>=1&&num<=120)setTimeout(()=>addChat('🤖 AI',`#${num} "${items[num]}" 보고 싶다고요? 돌려봅시다! 🎰`,'#fbbf24'),500);
 }
 
-buildStrip(1,false);
+buildStrip(1);
+
+// 참가자 뽑기
+let people=[];
+const nameColors=['#818cf8','#f472b6','#4ade80','#38bdf8','#fb923c','#facc15','#c084fc','#f87171','#a78bfa','#34d399'];
+const whoMsgs=['이번 제물은...','선택받은 자는...','운명의 소환...','AI가 지목한 자...','영역전개 대상자...','스쿠나의 손가락을 받을 자...','다음 타자는...','이치방 쿠지의 주인공...'];
+
+function addPerson(){
+  const i=document.getElementById('nameInput'),n=i.value.trim();
+  if(!n||people.includes(n))return;
+  people.push(n); i.value=''; renderNames();
+  document.getElementById('pickBtn').disabled=false;
+  addChat('🤖 AI',`${n}님 참전! (${people.length}명)`,'#fbbf24');
+}
+
+function removePerson(name){
+  people=people.filter(p=>p!==name); renderNames();
+  if(people.length===0)document.getElementById('pickBtn').disabled=true;
+}
+
+function renderNames(){
+  const l=document.getElementById('nameList');l.innerHTML='';
+  people.forEach((n,i)=>{
+    const s=document.createElement('span');
+    s.style.cssText=`display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,0.06);border:1px solid ${nameColors[i%nameColors.length]}40;color:${nameColors[i%nameColors.length]};padding:2px 10px;border-radius:12px;font-size:0.8em;cursor:pointer;`;
+    s.innerHTML=`${n} <span style="opacity:0.5" onclick="event.stopPropagation();removePerson('${n}')">✕</span>`;
+    l.appendChild(s);
+  });
+}
+
+let picking=false;
+function pickPerson(){
+  if(picking||people.length===0)return; picking=true;
+  const btn=document.getElementById('pickBtn'),res=document.getElementById('pickResult');
+  btn.disabled=true;
+  const msg=whoMsgs[Math.floor(Math.random()*whoMsgs.length)];
+  res.innerHTML=`<div style="color:#94a3b8;font-size:1.1em;">${msg}</div>`;
+  let count=0;
+  const flash=setInterval(()=>{
+    const r=people[Math.floor(Math.random()*people.length)];
+    const c=nameColors[people.indexOf(r)%nameColors.length];
+    res.innerHTML=`<div style="font-size:2.2em;font-weight:900;color:${c};transition:none;">${r}</div>`;
+    count++;
+    if(count>20+Math.random()*10){
+      clearInterval(flash);
+      const final=people[Math.floor(Math.random()*people.length)];
+      const fc=nameColors[people.indexOf(final)%nameColors.length];
+      res.innerHTML=`<div style="font-size:2.5em;font-weight:900;color:${fc};animation:popIn 0.3s ease-out;">🫵 ${final}</div><div style="color:#94a3b8;font-size:0.9em;margin-top:4px;">각오하세요</div>`;
+      addChat('🤖 AI',`🫵 ${final}님 당첨!! 각오하세요~`,'#fbbf24');
+      picking=false; btn.disabled=false;
+    }
+  },100);
+}
 </script>
 </body>
 </html>
