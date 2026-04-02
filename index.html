@@ -550,7 +550,7 @@ const items = {
 };
 
 const TOTAL=120, ITEM_H=80;
-let spinning=false;
+let spinning=false, usedItems=new Set();
 
 function buildStrip(targetIdx) {
   const s=document.getElementById('strip'); s.innerHTML='';
@@ -573,7 +573,9 @@ function spin(){
   if(spinning)return; spinning=true;
   const sb=document.getElementById('spinBtn'),rb=document.getElementById('rerollBtn'),rt=document.getElementById('resultText');
   sb.disabled=true; rb.style.display='none'; rt.innerHTML='';
-  const ti=Math.floor(Math.random()*TOTAL)+1;
+  if(usedItems.size>=TOTAL){usedItems.clear();addChat('🤖 AI','120개 전부 뽑았습니다! 리셋!','#fbbf24');}
+  let ti;do{ti=Math.floor(Math.random()*TOTAL)+1;}while(usedItems.has(ti));
+  usedItems.add(ti);
   const cp=buildStrip(ti), s=document.getElementById('strip');
   s.style.transition='none'; s.style.transform='translateY(0)';
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
