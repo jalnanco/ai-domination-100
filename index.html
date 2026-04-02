@@ -2,317 +2,82 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>AI 지구정복 100가지</title>
+<title>AI 지구정복 120선</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: #0a0a0f;
-    color: #e0e0e0;
-    padding: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Noto Sans KR',sans-serif;background:#0a0a0f;color:#e0e0e0;padding:40px;max-width:1200px;margin:0 auto;}
 
-  .header {
-    text-align: center;
-    margin-bottom: 30px;
-    padding-bottom: 25px;
-    border-bottom: 2px solid rgba(167,139,250,0.3);
-  }
+  .header{text-align:center;margin-bottom:30px;padding-bottom:25px;border-bottom:2px solid rgba(167,139,250,0.3);}
+  .header h1{font-size:2.4em;font-weight:900;background:linear-gradient(135deg,#a78bfa,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .header p{color:#94a3b8;font-size:1.1em;margin-top:8px;}
+  .header .date{color:#fbbf24;font-weight:700;font-size:1.2em;margin-top:5px;}
 
-  .header h1 {
-    font-size: 2.4em;
-    font-weight: 900;
-    background: linear-gradient(135deg, #a78bfa, #06b6d4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:3px 20px;margin-bottom:20px;}
+  .item{font-size:0.82em;padding:3px 0;color:#94a3b8;display:flex;align-items:center;gap:6px;line-height:1.4;}
+  .item .num{color:#475569;font-size:0.85em;min-width:26px;text-align:right;}
+  .item .rank{font-size:0.75em;min-width:70px;}
+  .item .text{flex:1;}
 
-  .header p {
-    color: #94a3b8;
-    font-size: 1.1em;
-    margin-top: 8px;
-  }
-
-  .header .date {
-    color: #fbbf24;
-    font-weight: 700;
-    font-size: 1.2em;
-    margin-top: 5px;
-  }
-
-  .section-title {
-    font-size: 1.1em;
-    font-weight: 700;
-    padding: 8px 16px;
-    margin: 18px 0 10px 0;
-    border-radius: 8px;
-    display: inline-block;
-  }
-
-  .section-gamer { background: rgba(99,102,241,0.2); color: #818cf8; }
-  .section-otaku { background: rgba(236,72,153,0.2); color: #f472b6; }
-  .section-life { background: rgba(34,197,94,0.2); color: #4ade80; }
-  .section-analysis { background: rgba(14,165,233,0.2); color: #38bdf8; }
-  .section-wow { background: rgba(249,115,22,0.2); color: #fb923c; }
-  .section-fun { background: rgba(250,204,21,0.2); color: #facc15; }
-
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3px 20px;
-  }
-
-  .item {
-    font-size: 0.82em;
-    padding: 3px 0;
-    color: #94a3b8;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    line-height: 1.4;
-  }
-
-  .item .num {
-    color: #475569;
-    font-size: 0.85em;
-    min-width: 22px;
-    text-align: right;
-  }
-
-  .item .stars {
-    color: #fbbf24;
-    font-size: 0.75em;
-    min-width: 55px;
-  }
-
-  .item .text { flex: 1; }
-
-  .footer {
-    text-align: center;
-    margin-top: 30px;
-    padding-top: 25px;
-    border-top: 2px solid rgba(167,139,250,0.3);
-  }
-
-  .footer .cta {
-    font-size: 1.6em;
-    font-weight: 900;
-    color: #fbbf24;
-    margin-bottom: 10px;
-  }
-
-  .footer p { color: #64748b; font-size: 0.95em; }
-
-  .footer .discord {
-    display: inline-block;
-    margin-top: 12px;
-    background: rgba(88,101,242,0.2);
-    border: 1px solid rgba(88,101,242,0.4);
-    color: #7289da;
-    padding: 8px 24px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 1.05em;
-  }
-
-  .section-nanko { background: rgba(168,85,247,0.2); color: #c084fc; }
-  .section-battle { background: rgba(239,68,68,0.2); color: #f87171; }
+  /* LCK 랭크 컬러 */
+  .rank-iron{color:#7c6f64;}
+  .rank-bronze{color:#cd7f32;}
+  .rank-silver{color:#a0aec0;}
+  .rank-gold{color:#ecc94b;}
+  .rank-platinum{color:#38b2ac;}
+  .rank-emerald{color:#48bb78;}
+  .rank-diamond{color:#63b3ed;}
+  .rank-master{color:#b794f4;}
+  .rank-grandmaster{color:#f56565;}
+  .rank-challenger{color:#fbbf24;text-shadow:0 0 8px rgba(251,191,36,0.5);}
 
   /* Roulette */
-  .roulette-section {
-    display: flex;
-    gap: 20px;
-    margin: 30px 0;
-  }
+  .roulette-section{display:flex;gap:20px;margin:30px 0;}
+  .roulette-area{flex:1;text-align:center;padding:25px;background:rgba(255,255,255,0.02);border:1px solid rgba(167,139,250,0.2);border-radius:16px;}
+  .roulette-window{position:relative;height:240px;overflow:hidden;margin:15px auto;max-width:500px;border-radius:12px;background:rgba(0,0,0,0.3);border:2px solid rgba(167,139,250,0.3);}
+  .roulette-strip{position:absolute;width:100%;transition:none;}
+  .roulette-item{height:80px;display:flex;align-items:center;justify-content:center;font-size:1.1em;color:#94a3b8;border-bottom:1px solid rgba(255,255,255,0.05);padding:0 20px;}
+  .roulette-item.center{color:#fbbf24;font-weight:900;font-size:1.3em;background:rgba(251,191,36,0.08);}
+  .roulette-pointer{position:absolute;top:50%;left:0;right:0;height:80px;margin-top:-40px;border-top:3px solid #fbbf24;border-bottom:3px solid #fbbf24;pointer-events:none;z-index:10;box-shadow:0 0 30px rgba(251,191,36,0.2);}
+  .roulette-pointer::before{content:'▶';position:absolute;left:-5px;top:50%;transform:translateY(-50%);color:#fbbf24;font-size:1.2em;}
+  .roulette-btns{margin-top:15px;display:flex;gap:10px;justify-content:center;}
 
-  .roulette-area {
-    flex: 1;
-    text-align: center;
-    padding: 25px;
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(167,139,250,0.2);
-    border-radius: 16px;
-  }
+  .dice-btn{background:linear-gradient(135deg,#a78bfa,#06b6d4);color:#0a0a0f;border:none;padding:12px 30px;font-size:1.1em;font-weight:900;border-radius:12px;cursor:pointer;font-family:'Noto Sans KR';transition:transform 0.15s,box-shadow 0.15s;}
+  .dice-btn:hover{transform:scale(1.05);box-shadow:0 0 30px rgba(167,139,250,0.4);}
+  .dice-btn:active{transform:scale(0.97);}
+  .dice-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+  .btn-reset{background:linear-gradient(135deg,#64748b,#475569);}
+  .result-text{margin-top:15px;font-size:1.3em;font-weight:700;color:#e0e0e0;min-height:40px;}
+  .result-win{color:#fbbf24;}
 
-  .roulette-window {
-    position: relative;
-    height: 240px;
-    overflow: hidden;
-    margin: 15px auto;
-    max-width: 500px;
-    border-radius: 12px;
-    background: rgba(0,0,0,0.3);
-    border: 2px solid rgba(167,139,250,0.3);
-  }
+  /* History */
+  .history-area{margin-top:15px;text-align:left;max-height:200px;overflow-y:auto;padding:10px;background:rgba(0,0,0,0.2);border-radius:8px;}
+  .history-item{font-size:0.85em;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;gap:8px;align-items:center;}
+  .history-item .h-num{color:#fbbf24;font-weight:700;min-width:20px;}
+  .history-item .h-order{color:#475569;font-size:0.8em;min-width:30px;}
+  .history-done{text-align:center;color:#94a3b8;padding:20px;font-size:1.1em;}
 
-  .roulette-strip {
-    position: absolute;
-    width: 100%;
-    transition: none;
-  }
+  /* Side panels */
+  .side-panel{display:flex;flex-direction:column;gap:15px;width:300px;min-width:300px;}
+  .panel{background:rgba(255,255,255,0.02);border:1px solid rgba(88,101,242,0.3);border-radius:16px;overflow:hidden;}
+  .panel-header{background:rgba(88,101,242,0.2);padding:10px 15px;font-weight:700;color:#7289da;font-size:0.9em;text-align:center;}
+  .panel-body{padding:10px;}
+  .memo-messages{padding:10px;overflow-y:auto;max-height:180px;font-size:0.8em;}
+  .memo-msg{margin-bottom:6px;line-height:1.4;}
+  .memo-msg .name{font-weight:700;margin-right:5px;}
+  .memo-msg .text-msg{color:#94a3b8;}
+  .memo-input-area{display:flex;border-top:1px solid rgba(255,255,255,0.05);}
+  .memo-input{flex:1;background:rgba(0,0,0,0.3);border:none;padding:10px 12px;color:#e0e0e0;font-family:'Noto Sans KR';font-size:0.85em;outline:none;}
+  .memo-input::placeholder{color:#475569;}
+  .memo-send{background:rgba(88,101,242,0.3);border:none;color:#7289da;padding:10px 14px;cursor:pointer;font-family:'Noto Sans KR';font-weight:700;}
+  .memo-send:hover{background:rgba(88,101,242,0.5);}
 
-  .roulette-item {
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1em;
-    color: #94a3b8;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    padding: 0 20px;
-  }
+  .footer{text-align:center;margin-top:30px;padding-top:25px;border-top:2px solid rgba(167,139,250,0.3);}
+  .footer .cta{font-size:1.6em;font-weight:900;color:#fbbf24;margin-bottom:10px;}
+  .footer p{color:#64748b;font-size:0.95em;}
 
-  .roulette-item.center {
-    color: #fbbf24;
-    font-weight: 900;
-    font-size: 1.3em;
-    background: rgba(251,191,36,0.08);
-  }
-
-  .roulette-pointer {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 80px;
-    margin-top: -40px;
-    border-top: 3px solid #fbbf24;
-    border-bottom: 3px solid #fbbf24;
-    pointer-events: none;
-    z-index: 10;
-    box-shadow: 0 0 30px rgba(251,191,36,0.2);
-  }
-
-  .roulette-pointer::before {
-    content: '▶';
-    position: absolute;
-    left: -5px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #fbbf24;
-    font-size: 1.2em;
-  }
-
-  .roulette-btns { margin-top: 15px; display: flex; gap: 10px; justify-content: center; }
-
-  .dice-btn {
-    background: linear-gradient(135deg, #a78bfa, #06b6d4);
-    color: #0a0a0f;
-    border: none;
-    padding: 12px 30px;
-    font-size: 1.1em;
-    font-weight: 900;
-    border-radius: 12px;
-    cursor: pointer;
-    font-family: 'Noto Sans KR';
-    transition: transform 0.15s, box-shadow 0.15s;
-  }
-
-  .dice-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(167,139,250,0.4); }
-  .dice-btn:active { transform: scale(0.97); }
-  .dice-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-  .btn-reroll {
-    background: linear-gradient(135deg, #f59e0b, #ef4444);
-    display: none;
-  }
-
-  .result-text {
-    margin-top: 15px;
-    font-size: 1.3em;
-    font-weight: 700;
-    color: #e0e0e0;
-    min-height: 40px;
-  }
-
-  .result-kkwang {
-    color: #ef4444;
-    font-size: 2em;
-    font-weight: 900;
-  }
-
-  .result-win {
-    color: #fbbf24;
-  }
-
-  /* Chat */
-  .chat-area {
-    width: 300px;
-    min-width: 300px;
-    display: flex;
-    flex-direction: column;
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(88,101,242,0.3);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .chat-header {
-    background: rgba(88,101,242,0.2);
-    padding: 10px 15px;
-    font-weight: 700;
-    color: #7289da;
-    font-size: 0.9em;
-    text-align: center;
-  }
-
-  .chat-messages {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-    max-height: 220px;
-    font-size: 0.8em;
-  }
-
-  .chat-msg {
-    margin-bottom: 6px;
-    line-height: 1.4;
-  }
-
-  .chat-msg .name {
-    font-weight: 700;
-    margin-right: 5px;
-  }
-
-  .chat-msg .text-msg { color: #94a3b8; }
-
-  .chat-input-area {
-    display: flex;
-    border-top: 1px solid rgba(255,255,255,0.05);
-  }
-
-  .chat-input {
-    flex: 1;
-    background: rgba(0,0,0,0.3);
-    border: none;
-    padding: 10px 12px;
-    color: #e0e0e0;
-    font-family: 'Noto Sans KR';
-    font-size: 0.85em;
-    outline: none;
-  }
-
-  .chat-input::placeholder { color: #475569; }
-
-  .chat-send {
-    background: rgba(88,101,242,0.3);
-    border: none;
-    color: #7289da;
-    padding: 10px 14px;
-    cursor: pointer;
-    font-family: 'Noto Sans KR';
-    font-weight: 700;
-  }
-
-  .chat-send:hover { background: rgba(88,101,242,0.5); }
-
-  @media (max-width: 800px) {
-    .roulette-section { flex-direction: column; }
-    .chat-area { width: 100%; min-width: auto; }
-  }
+  @keyframes popIn{from{transform:scale(0.5) rotate(-10deg);opacity:0;}to{transform:scale(1) rotate(0);opacity:1;}}
+  @media(max-width:800px){.roulette-section{flex-direction:column;}.side-panel{width:100%;min-width:auto;}}
 </style>
 </head>
 <body>
@@ -321,50 +86,50 @@
   <h1>🤖 AI로 지구를 지배하는 법 — 이치방 쿠지 120선</h1>
   <p>강의 중 이 리스트에서 🎰이치방 쿠지(뽑기)! 참가자가 골라서 즉석 시연.</p>
   <div class="date">4/3(금) 저녁 7:30 · LCK 직관방/관전방 디스코드 노가리방</div>
-  <p style="color:#64748b; margin-top:8px; font-size:0.9em;">협찬: 헤이 · 방장 | 강사: 난코</p>
+  <p style="color:#64748b;margin-top:8px;font-size:0.9em;">협찬: 헤이 · 방장 | 강사: 난코</p>
+  <p style="color:#475569;margin-top:6px;font-size:0.8em;">🥉Bronze ⭐ · 🥈Silver ⭐⭐ · 🥇Gold ⭐⭐⭐ · 💎Diamond ⭐⭐⭐⭐ · 🏆Challenger ⭐⭐⭐⭐⭐</p>
 </div>
 
-<div style="font-size:1.1em; color:#94a3b8; margin-bottom:10px;">🎲 120가지 — 랜덤 배치 (새로고침하면 순서 바뀜)</div>
-<div class="grid" id="shuffledList"></div>
+<div class="grid" id="itemList"></div>
 
 <div class="roulette-section">
   <div class="roulette-area">
-    <div style="font-size:1.2em; color:#c4b5fd; font-weight:700;">🎰 이치방 쿠지 — 룰렛 뽑기</div>
+    <div style="font-size:1.2em;color:#c4b5fd;font-weight:700;">🎰 이치방 쿠지 — 룰렛 뽑기</div>
     <div class="roulette-window">
       <div class="roulette-pointer"></div>
       <div class="roulette-strip" id="strip"></div>
     </div>
     <div class="roulette-btns">
       <button class="dice-btn" id="spinBtn" onclick="spin()">🎰 돌리기!</button>
-      <button class="dice-btn btn-reroll" id="rerollBtn" onclick="spin()">🔄 다시 돌리기</button>
+      <button class="dice-btn btn-reset" id="resetBtn" onclick="resetAll()">🔄 초기화</button>
     </div>
     <div class="result-text" id="resultText"></div>
+    <div class="history-area" id="historyArea">
+      <div style="color:#475569;text-align:center;font-size:0.85em;">뽑기 히스토리가 여기에 쌓입니다</div>
+    </div>
   </div>
 
-  <div style="display:flex; flex-direction:column; gap:15px; width:300px; min-width:300px;">
-    <!-- 참가자 룰렛 -->
-    <div class="chat-area" style="flex:none; height:auto; padding-bottom:0;">
-      <div class="chat-header">🎯 누가 할 거야?</div>
-      <div style="padding:10px;">
-        <div style="display:flex; gap:5px; margin-bottom:8px;">
-          <input class="chat-input" id="nameInput" placeholder="참가자 이름 추가..." onkeydown="if(event.key==='Enter')addPerson()" style="border-radius:6px;">
-          <button class="chat-send" onclick="addPerson()" style="border-radius:6px; white-space:nowrap;">추가</button>
+  <div class="side-panel">
+    <div class="panel" style="flex:none;">
+      <div class="panel-header">🎯 누가 할 거야?</div>
+      <div class="panel-body">
+        <div style="display:flex;gap:5px;margin-bottom:8px;">
+          <input class="memo-input" id="nameInput" placeholder="참가자 이름..." onkeydown="if(event.key==='Enter')addPerson()" style="border-radius:6px;">
+          <button class="memo-send" onclick="addPerson()" style="border-radius:6px;white-space:nowrap;">추가</button>
         </div>
-        <div id="nameList" style="display:flex; flex-wrap:wrap; gap:4px; margin-bottom:10px; min-height:24px;"></div>
-        <button class="dice-btn" onclick="pickPerson()" id="pickBtn" style="width:100%; padding:10px; font-size:1em;" disabled>🫵 누구?!</button>
-        <div id="pickResult" style="text-align:center; margin-top:10px; min-height:60px;"></div>
+        <div id="nameList" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px;min-height:24px;"></div>
+        <button class="dice-btn" onclick="pickPerson()" id="pickBtn" style="width:100%;padding:10px;font-size:1em;" disabled>🫵 누구?!</button>
+        <div id="pickResult" style="text-align:center;margin-top:10px;min-height:60px;"></div>
       </div>
     </div>
-
-    <!-- 채팅 -->
-    <div class="chat-area" style="flex:1;">
-      <div class="chat-header">📝 기록용 메모지</div>
-      <div class="chat-messages" id="chatMessages">
-        <div class="chat-msg"><span class="name" style="color:#fbbf24;">📌</span><span class="text-msg">당첨 결과 & 메모를 기록하세요</span></div>
+    <div class="panel" style="flex:1;">
+      <div class="panel-header">📝 기록용 메모지</div>
+      <div class="memo-messages" id="memoMessages">
+        <div class="memo-msg"><span class="name" style="color:#fbbf24;">📌</span><span class="text-msg">당첨 결과가 자동 기록됩니다</span></div>
       </div>
-      <div class="chat-input-area">
-        <input class="chat-input" id="chatInput" placeholder="메시지 입력..." onkeydown="if(event.key==='Enter')sendChat()">
-        <button class="chat-send" onclick="sendChat()">전송</button>
+      <div class="memo-input-area">
+        <input class="memo-input" id="memoInput" placeholder="메모 입력..." onkeydown="if(event.key==='Enter')sendMemo()">
+        <button class="memo-send" onclick="sendMemo()">저장</button>
       </div>
     </div>
   </div>
@@ -373,121 +138,183 @@
 <div class="footer">
   <div class="cta">🎰 이치방 쿠지! 120가지 중 랜덤으로 시전합니다</div>
   <p>뭐가 나올지는 참가자의 운 + 선택에 달림</p>
-  <p style="margin-top:5px;">⭐ = 즉석 · ⭐⭐ = 약간 준비 · ⭐⭐⭐ = 데이터 필요</p>
-  <div class="discord">🎮 4/3(금) 19:30 · LCK 직관방 디스코드 노가리방</div>
-  <p style="margin-top:8px; color:#475569; font-size:0.85em;">협찬: 헤이 · 방장 | discord.gg/CfqghZq</p>
+  <div style="display:inline-block;margin-top:12px;background:rgba(88,101,242,0.2);border:1px solid rgba(88,101,242,0.4);color:#7289da;padding:8px 24px;border-radius:8px;font-weight:700;font-size:1.05em;">🎮 4/3(금) 19:30 · LCK 직관방/관전방 디스코드 노가리방</div>
+  <p style="margin-top:8px;color:#475569;font-size:0.85em;">협찬: 헤이 · 방장 | discord.gg/CfqghZq</p>
 </div>
 
 <script>
-const items = {
-  1:'롤 전적 AI 코칭 — "왜 지는지" 분석',2:'롤체 메타 분석 — 현 패치 티어리스트',3:'AI 밴픽 추천 — 상대 픽 기준 카운터',4:'LCK 선수 문체 분석',5:'AI가 쓴 LCK 실황 중계',6:'나만의 챔피언 설계 — 성격 기반',7:'게임 채팅 번역기 — 은어→외국인용',8:'스타 빌드오더 최적화',9:'AI 던전마스터 — 즉석 TRPG',10:'"내가 라이엇 밸런스팀이라면" — AI 패치노트',
-  11:'프로게이머 커리어 상담',12:'AI가 쓴 항복 투표 설득문 (논문체)',13:'롤 패치노트 요약 + 메타 예측',14:'AI 전략 코치 시뮬',15:'AI가 예측하는 이번 LCK 플오 결과',16:'AI가 만든 롤 퀴즈 — 대결',17:'AI가 만든 롤 로딩 팁 (웃긴 버전)',18:'AI 게임 리뷰어 — 3줄 리뷰',19:'롤 챔프별 추천 야식 메뉴',20:'롤 닉네임 작명기',
-  21:'MAL 기반 애니 추천',22:'이세카이 전생 오프닝 생성',23:'캐릭터 MBTI 분석',24:'명대사 → 인생 조언 변환',25:'내가 주술사라면 — 술식 생성',26:'원피스 현상금 책정',27:'AI 동인지 시놉시스 (건전)',28:'내 인생을 애니 OP 가사로',29:'AI가 쓴 라노벨 1화',30:'내 최애 캐릭터에게 편지 쓰기',
-  31:'"이 캐릭터가 한국 군대 가면" — 보직 배정',32:'"이 캐릭터가 회사원이라면"',33:'웹툰 스토리 즉석 생성',34:'애니 장면을 롤 상황으로 번역',35:'"이 애니 캐릭터의 틴더 프로필"',36:'애니 세계관 크로스오버 대결',37:'AI가 만든 애니 성지순례 코스',38:'일본어 애니 대사 뉘앙스 해석',39:'만화 컷 대사 생성',40:'다음 시즌 애니 히트작 예측',
-  41:'이력서 30초 첨삭',42:'퇴사 메일 작성기 (정중+시원)',43:'AI가 쓴 퇴사 후 복귀 시나리오 (드라마)',44:'소개팅 프로필 최적화',45:'배달 메뉴 결정기',46:'여행 계획 즉석 생성',47:'AI 변호사 — 월세/환불 상담',48:'게임 용어를 셰익스피어체로 번역',49:'"엄마 나 프로게이머 할래" AI 설득문',50:'참가자 메인 챔프 기반 칵테일 레시피',
-  51:'면접 예상 질문 20개 + 모범답안',52:'축의금/부의금 적정 금액 계산',53:'내 방을 애니 캐릭터 방으로 리모델링',54:'중고거래 가격 책정 (당근)',55:'"AI가 계산한 페이커의 추정 연봉 구조"',56:'롤 챔프 기반 운동 루틴 (가렌=스쿼트)',57:'좋아하는 챔프로 연애 시뮬레이션',58:'선물 추천기',59:'"롤 맵 부동산" — 탑/미드/봇 시세 분석',60:'AI가 쓴 "듀오 파트너 계약서"',
-  61:'디코 채팅 워드클라우드',62:'채팅 감정 그래프 — 시간대별',63:'"이 사람은 어떤 챔프?" 매칭',64:'참가자 2명 성격 → 듀오 챔프 추천',65:'■■■님 사생활 예측',66:'■■■님 성격 분석',67:'"AI가 본 이 서버" 분위기 요약',68:'참가자 궁합 매칭 — 듀오 시너지',69:'AI 타로 — 오늘의 LP 운세',70:'참가자 성격 유형 분류',
-  71:'AI가 본 난코 — 자기 분석 공개',72:'"채팅만 보고 롤 티어 맞춰봐"',73:'참가자 채팅 → 주술회전 캐릭터 배정',74:'"이 사람의 다음 한마디 예측"',75:'분석 결과 → 이세카이 파티 역할',
-  76:'AI끼리 토론 — GPT vs Claude',77:'"페이커 은퇴" 가짜 뉴스 → AI 판별',78:'AI 작사 — LCK 응원가 / 노가리방 찬가',79:'롤 챔프 요리 레시피 (이즈리얼)',80:'"내 롤 아이디로 전생 분석"',81:'좋아하는 챔프로 연애 시뮬레이션',82:'AI가 예측하는 LCK 플오 결과',83:'LCK 선수 은퇴식 멘트',84:'챔프 대사를 다른 챔프 말투로',85:'AI가 쓴 직관방 입장 규칙 (헌법)',
-  86:'AI 응원 배틀 — 칭찬 랩 대결',87:'1분 챌린지 — 참가자 폰으로 바로',88:'AI 고민상담 — 여친이 롤 하지 말래',89:'닉네임만 보고 프로파일링',90:'AI가 쓴 강의 후기 (비관/냉소 ver)',
-  91:'난코의 첫사랑 이야기 — AI 드라마화',92:'난코의 인생 그래프 — AI 분석',93:'난코의 흑역사 발굴',94:'난코가 AI한테 연애상담 라이브',95:'"AI가 본 난코" — 성격 분석',
-  96:'참가자 2명 AI 디베이트 — 판정',97:'참가자 vs AI 말싸움',98:'AI 역질문 성격 분석 — 3개 질문',99:'"누가 더 OO한가" AI 판정 배틀',100:'AI가 쓴 강의 후기 + MVP 선정',
-  101:'AI가 만든 웹 게임 즉석 플레이',102:'실시간 디코봇 → 서버 배포',103:'참가자 전원 궁합표',104:'실시간 감정 대시보드',105:'AI가 강의 실시간 요약',106:'전원 이세카이 파티 편성',107:'"노가리방 뉴스" 리포트',108:'전원 등장 AI 단편 소설',109:'서버 로고 디자인',110:'"롤 이력서" 생성',
-  111:'참가자로 LCK 팀 편성',112:'강의 내용 시험 10문제',113:'맞춤 AI 활용법 리포트',114:'난코 1년 AI 데이터 시각화',115:'AI끼리 롤 밴픽 대결',116:'채팅 키워드 → AI 그림',117:'직관방/관전방 역사 연대기',118:'전원 애니 캐릭터 관계도',119:'"난코 평전" 위인전',120:'전원 2026 AI 운세'
+// 아이템 데이터 (분류 없이 랜덤 섞어서 1~120 재배치)
+const rawItems = [
+  '롤 전적 AI 코칭 — "왜 지는지" 분석','롤체 메타 분석 — 현 패치 티어리스트','AI 밴픽 추천 — 상대 픽 기준 카운터','LCK 선수 문체 분석','AI가 쓴 LCK 실황 중계','나만의 챔피언 설계 — 성격 기반','게임 채팅 번역기 — 은어→외국인용','스타 빌드오더 최적화','AI 던전마스터 — 즉석 TRPG','"내가 라이엇 밸런스팀이라면"',
+  '프로게이머 커리어 상담','AI가 쓴 항복 투표 설득문 (논문체)','롤 패치노트 요약 + 메타 예측','AI 전략 코치 시뮬','AI가 예측하는 이번 LCK 플오 결과','AI가 만든 롤 퀴즈 — 대결','AI가 만든 롤 로딩 팁 (웃긴 버전)','AI 게임 리뷰어 — 3줄 리뷰','롤 챔프별 추천 야식 메뉴','롤 닉네임 작명기',
+  'MAL 기반 애니 추천','이세카이 전생 오프닝 생성','캐릭터 MBTI 분석','명대사 → 인생 조언 변환','내가 주술사라면 — 술식 생성','원피스 현상금 책정','AI 동인지 시놉시스 (건전)','내 인생을 애니 OP 가사로','AI가 쓴 라노벨 1화','내 최애 캐릭터에게 편지 쓰기',
+  '"이 캐릭터가 한국 군대 가면"','"이 캐릭터가 회사원이라면"','웹툰 스토리 즉석 생성','애니 장면을 롤 상황으로 번역','"이 애니 캐릭터의 틴더 프로필"','애니 세계관 크로스오버 대결','AI가 만든 애니 성지순례 코스','일본어 애니 대사 뉘앙스 해석','만화 컷 대사 생성','다음 시즌 애니 히트작 예측',
+  '이력서 30초 첨삭','퇴사 메일 작성기 (정중+시원)','퇴사 후 복귀 시나리오 (드라마)','소개팅 프로필 최적화','배달 메뉴 결정기','여행 계획 즉석 생성','AI 변호사 — 월세/환불','게임 용어를 셰익스피어체로','"엄마 나 프로게이머 할래" 설득문','메인 챔프 기반 칵테일 레시피',
+  '면접 예상 질문 20개','축의금/부의금 계산기','내 방을 애니 캐릭터 방으로','중고거래 가격 책정 (당근)','페이커의 추정 연봉 구조','롤 챔프 기반 운동 루틴','좋아하는 챔프로 연애 시뮬','선물 추천기','"롤 맵 부동산" 시세 분석','"듀오 파트너 계약서"',
+  '디코 채팅 워드클라우드','채팅 감정 그래프','"이 사람은 어떤 챔프?"','참가자 2명 → 듀오 챔프 추천','■■■님 사생활 예측','■■■님 성격 분석','"AI가 본 이 서버"','참가자 궁합 매칭','AI 타로 — LP 운세','참가자 성격 유형 분류',
+  'AI가 본 난코','"채팅만 보고 티어 맞춰봐"','채팅 → 주술회전 캐릭터 배정','"다음 한마디 예측"','이세카이 파티 역할 배정',
+  'AI끼리 토론 — GPT vs Claude','"페이커 은퇴" 가짜 뉴스 판별','AI 작사 — LCK 응원가','롤 챔프 요리 레시피','"내 롤 아이디로 전생 분석"','좋아하는 챔프로 연애 시뮬','LCK 플오 결과 예측','LCK 선수 은퇴식 멘트','챔프 대사를 다른 말투로','직관방 입장 규칙 (헌법)',
+  'AI 응원 배틀 — 칭찬 랩','1분 챌린지 — 폰으로 바로','AI 고민상담 — 여친이 롤 하지 말래','닉네임만 보고 프로파일링','AI 강의 후기 (비관/냉소 ver)',
+  '난코의 첫사랑 — AI 드라마화','난코의 인생 그래프','난코의 흑역사 발굴','난코 AI 연애상담 라이브','"AI가 본 난코" 성격 분석',
+  '참가자 AI 디베이트 — 판정','참가자 vs AI 말싸움','AI 역질문 성격 분석','누가 더 OO한가 배틀','강의 후기 + MVP 선정',
+  'AI가 만든 웹 게임 즉석 플레이','실시간 디코봇 → 서버 배포','참가자 전원 궁합표','실시간 감정 대시보드','AI가 강의 실시간 요약','전원 이세카이 파티 편성','"노가리방 뉴스" 리포트','전원 등장 AI 단편 소설','서버 로고 디자인','"롤 이력서" 생성',
+  '참가자로 LCK 팀 편성','강의 내용 시험 10문제','맞춤 AI 활용법 리포트','난코 1년 AI 데이터 시각화','AI끼리 롤 밴픽 대결','채팅 키워드 → AI 그림','직관방/관전방 역사 연대기','전원 애니 캐릭터 관계도','"난코 평전" 위인전','전원 2026 AI 운세'
+];
+
+// 난이도 (원본 기준, 셔플 후에도 유지)
+const rawStars=[1,1,1,2,1,1,1,1,2,1, 1,1,2,2,2,1,1,1,1,1, 1,1,1,1,1,1,1,1,2,1, 1,1,1,1,1,1,2,1,1,2, 1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,2,1,1,1, 3,3,2,2,3,3,2,3,1,2, 2,2,2,2,2, 2,2,1,1,1,2,2,1,1,1, 1,1,1,1,1, 1,2,2,1,1, 2,1,1,1,1, 4,4,4,4,4,4,4,4,4,4, 4,4,5,5,4,4,4,4,5,4];
+
+// 섞기 (한 번만, 순서 고정)
+const seed=42;let rng=seed;function srand(){rng=(rng*16807)%2147483647;return(rng-1)/2147483646;}
+const order=[...Array(120).keys()];
+for(let i=119;i>0;i--){const j=Math.floor(srand()*(i+1));[order[i],order[j]]=[order[j],order[i]];}
+
+const items={}, itemStars={};
+order.forEach((origIdx,newIdx)=>{
+  items[newIdx+1]=rawItems[origIdx];
+  itemStars[newIdx+1]=rawStars[origIdx];
+});
+
+// 랭크 시스템
+const rankInfo={
+  1:{label:'🥉',cls:'rank-bronze',icon:'⭐'},
+  2:{label:'🥈',cls:'rank-silver',icon:'⭐⭐'},
+  3:{label:'🥇',cls:'rank-gold',icon:'⭐⭐⭐'},
+  4:{label:'💎',cls:'rank-diamond',icon:'⭐⭐⭐⭐'},
+  5:{label:'🏆',cls:'rank-challenger',icon:'⭐⭐⭐⭐⭐'}
 };
 
-const TOTAL=120, ITEM_H=80;
-let spinning=false, usedItems=new Set();
+function rankHtml(s){const r=rankInfo[s];return `<span class="rank ${r.cls}">${r.label} ${r.icon}</span>`;}
 
-function buildStrip(targetIdx) {
-  const s=document.getElementById('strip'); s.innerHTML='';
-  const N=60, stop=N-3;
+// 리스트 렌더링 (1~120 순서)
+function renderList(){
+  const g=document.getElementById('itemList');g.innerHTML='';
+  for(let i=1;i<=120;i++){
+    const d=document.createElement('div');d.className='item';d.id='item-'+i;
+    d.innerHTML=`<span class="num">${i}</span>${rankHtml(itemStars[i])}<span class="text">${items[i]}</span>`;
+    g.appendChild(d);
+  }
+}
+renderList();
+
+// 룰렛
+const TOTAL=120,ITEM_H=80;
+let spinning=false,usedItems=new Set(),historyCount=0;
+
+function buildStrip(ti){
+  const s=document.getElementById('strip');s.innerHTML='';
+  const N=60,stop=N-3;
   for(let i=0;i<N;i++){
     const d=document.createElement('div');
     d.className=i===stop?'roulette-item center':'roulette-item';
-    if(i===stop){
-      d.textContent=`#${targetIdx} ${items[targetIdx]}`;
-    } else {
-      const r=Math.floor(Math.random()*TOTAL)+1;
-      d.textContent=`#${r} ${items[r]}`;
-    }
+    if(i===stop){d.textContent=`#${ti} ${items[ti]}`;}
+    else{const r=Math.floor(Math.random()*TOTAL)+1;d.textContent=`#${r} ${items[r]}`;}
     s.appendChild(d);
   }
   return stop;
 }
 
 function spin(){
-  if(spinning)return; spinning=true;
-  const sb=document.getElementById('spinBtn'),rb=document.getElementById('rerollBtn'),rt=document.getElementById('resultText');
-  sb.disabled=true; rb.style.display='none'; rt.innerHTML='';
-  if(usedItems.size>=TOTAL){usedItems.clear();addChat('🤖 AI','120개 전부 뽑았습니다! 리셋!','#fbbf24');}
+  if(spinning)return;
+  if(usedItems.size>=TOTAL){
+    document.getElementById('resultText').innerHTML='<div style="color:#94a3b8;">🎉 120개 전부 뽑았습니다! 초기화해주세요.</div>';
+    document.getElementById('spinBtn').disabled=true;
+    return;
+  }
+  spinning=true;
+  const sb=document.getElementById('spinBtn'),rt=document.getElementById('resultText');
+  sb.disabled=true;rt.innerHTML='';
   let ti;do{ti=Math.floor(Math.random()*TOTAL)+1;}while(usedItems.has(ti));
   usedItems.add(ti);
-  const cp=buildStrip(ti), s=document.getElementById('strip');
-  s.style.transition='none'; s.style.transform='translateY(0)';
+  const cp=buildStrip(ti),s=document.getElementById('strip');
+  s.style.transition='none';s.style.transform='translateY(0)';
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
     const ty=-(cp*ITEM_H)+(240/2)-(ITEM_H/2);
     s.style.transition='transform 4s cubic-bezier(0.15,0.85,0.25,1.02)';
     s.style.transform=`translateY(${ty}px)`;
     setTimeout(()=>{
-      spinning=false; sb.disabled=false; rb.style.display='inline-block';
-      rt.innerHTML=`<div class="result-win">#${ti} — ${items[ti]}</div>`;
+      spinning=false;sb.disabled=usedItems.size>=TOTAL;
+      const r=rankInfo[itemStars[ti]];
+      rt.innerHTML=`<div class="result-win" style="animation:popIn 0.3s;">${r.label} #${ti} — ${items[ti]}</div>`;
       spawnStars(document.querySelector('.roulette-window'));
-      addChat('📌',`🎉 #${ti} "${items[ti]}"`, '#fbbf24');
+      rainEffect();
+      addHistory(ti);
+      addMemo('🎉',`#${ti} ${r.icon} ${items[ti]}`,'#fbbf24');
+      // 리스트에서 하이라이트
+      const el=document.getElementById('item-'+ti);
+      if(el){el.style.background='rgba(251,191,36,0.1)';el.style.borderLeft='3px solid #fbbf24';}
     },4200);
   }));
 }
 
-// Chat
-const colors=['#818cf8','#f472b6','#4ade80','#38bdf8','#fb923c','#facc15','#c084fc','#f87171'];
-let myC=colors[Math.floor(Math.random()*colors.length)],myN='익명'+Math.floor(Math.random()*99+1);
-
-function addChat(n,t,c){
-  const m=document.getElementById('chatMessages'),d=document.createElement('div');
-  d.className='chat-msg';d.innerHTML=`<span class="name" style="color:${c||myC}">${n}</span><span class="text-msg">${t}</span>`;
-  m.appendChild(d);m.scrollTop=m.scrollHeight;
+function resetAll(){
+  usedItems.clear();historyCount=0;
+  document.getElementById('historyArea').innerHTML='<div style="color:#475569;text-align:center;font-size:0.85em;">뽑기 히스토리가 여기에 쌓입니다</div>';
+  document.getElementById('resultText').innerHTML='';
+  document.getElementById('spinBtn').disabled=false;
+  document.querySelectorAll('.item').forEach(el=>{el.style.background='';el.style.borderLeft='';});
+  addMemo('🔄','히스토리 초기화','#94a3b8');
 }
 
-function sendChat(){
-  const i=document.getElementById('chatInput'),t=i.value.trim();if(!t)return;
-  addChat(myN,t,myC);i.value='';
-  const num=parseInt(t);
-  if(num>=1&&num<=120)setTimeout(()=>addChat('📌',`→ #${num} "${items[num]}"`,'#94a3b8'),300);
+function addHistory(ti){
+  const area=document.getElementById('historyArea');
+  if(historyCount===0)area.innerHTML='';
+  historyCount++;
+  const r=rankInfo[itemStars[ti]];
+  const d=document.createElement('div');d.className='history-item';
+  d.innerHTML=`<span class="h-order">${historyCount}.</span><span class="h-num">#${ti}</span><span class="${r.cls}">${r.label}${r.icon}</span><span style="color:#cbd5e1;flex:1;">${items[ti]}</span>`;
+  area.prepend(d);
 }
 
-buildStrip(1);
-
-// 셔플 리스트 렌더링
-function renderShuffledList(){
-  const keys=Object.keys(items).map(Number);
-  for(let i=keys.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[keys[i],keys[j]]=[keys[j],keys[i]];}
-  const grid=document.getElementById('shuffledList');
-  keys.forEach(k=>{
-    const d=document.createElement('div');d.className='item';
-    d.innerHTML=`<span class="num">${k}</span><span class="text">${items[k]}</span>`;
-    grid.appendChild(d);
-  });
-}
-renderShuffledList();
-
-// 별/파티클 이펙트
+// 별 폭발 이펙트
 function spawnStars(el){
   const rect=el.getBoundingClientRect();
-  const cx=rect.left+rect.width/2, cy=rect.top+rect.height/2;
-  const emojis=['⭐','✨','🌟','💫','🎉','🎊','🔥','💥'];
-  for(let i=0;i<30;i++){
+  const cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;
+  const emojis=['⭐','✨','🌟','💫','🎉','🎊','🔥','💥','🏆','💎'];
+  for(let i=0;i<40;i++){
     const s=document.createElement('div');
     s.textContent=emojis[Math.floor(Math.random()*emojis.length)];
-    s.style.cssText=`position:fixed;left:${cx}px;top:${cy}px;font-size:${Math.random()*24+16}px;pointer-events:none;z-index:9999;transition:all ${Math.random()*1+0.8}s ease-out;opacity:1;`;
+    s.style.cssText=`position:fixed;left:${cx}px;top:${cy}px;font-size:${Math.random()*28+14}px;pointer-events:none;z-index:9999;transition:all ${Math.random()*1.2+0.6}s ease-out;opacity:1;`;
     document.body.appendChild(s);
     requestAnimationFrame(()=>{
-      s.style.left=cx+(Math.random()-0.5)*500+'px';
-      s.style.top=cy+(Math.random()-0.5)*400-100+'px';
+      s.style.left=cx+(Math.random()-0.5)*600+'px';
+      s.style.top=cy+(Math.random()-0.5)*500-150+'px';
       s.style.opacity='0';
-      s.style.transform=`scale(${Math.random()+0.5}) rotate(${Math.random()*360}deg)`;
+      s.style.transform=`scale(${Math.random()*1.5+0.5}) rotate(${Math.random()*720}deg)`;
     });
-    setTimeout(()=>s.remove(),2000);
+    setTimeout(()=>s.remove(),2200);
   }
+}
+
+// 위에서 우수수 내려오는 이펙트
+function rainEffect(){
+  const emojis=['⭐','✨','🌟','💫','🎊','💎','🏆'];
+  for(let i=0;i<50;i++){
+    setTimeout(()=>{
+      const s=document.createElement('div');
+      s.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+      const x=Math.random()*window.innerWidth;
+      s.style.cssText=`position:fixed;left:${x}px;top:-30px;font-size:${Math.random()*20+12}px;pointer-events:none;z-index:9998;transition:all ${Math.random()*2+1.5}s ease-in;opacity:0.9;`;
+      document.body.appendChild(s);
+      requestAnimationFrame(()=>{
+        s.style.top=window.innerHeight+30+'px';
+        s.style.opacity='0';
+        s.style.transform=`rotate(${Math.random()*360}deg)`;
+      });
+      setTimeout(()=>s.remove(),4000);
+    },i*60);
+  }
+}
+
+// 메모
+function addMemo(n,t,c){
+  const m=document.getElementById('memoMessages'),d=document.createElement('div');
+  d.className='memo-msg';d.innerHTML=`<span class="name" style="color:${c||'#7289da'}">${n}</span><span class="text-msg">${t}</span>`;
+  m.appendChild(d);m.scrollTop=m.scrollHeight;
+}
+function sendMemo(){
+  const i=document.getElementById('memoInput'),t=i.value.trim();if(!t)return;
+  addMemo('📝',t,'#7289da');i.value='';
 }
 
 // 참가자 뽑기
@@ -498,16 +325,14 @@ const whoMsgs=['이번 제물은...','선택받은 자는...','운명의 소환.
 function addPerson(){
   const i=document.getElementById('nameInput'),n=i.value.trim();
   if(!n||people.includes(n))return;
-  people.push(n); i.value=''; renderNames();
+  people.push(n);i.value='';renderNames();
   document.getElementById('pickBtn').disabled=false;
-  addChat('🤖 AI',`${n}님 참전! (${people.length}명)`,'#fbbf24');
+  addMemo('📌',`${n}님 참전! (${people.length}명)`,'#fbbf24');
 }
-
 function removePerson(name){
-  people=people.filter(p=>p!==name); renderNames();
+  people=people.filter(p=>p!==name);renderNames();
   if(people.length===0)document.getElementById('pickBtn').disabled=true;
 }
-
 function renderNames(){
   const l=document.getElementById('nameList');l.innerHTML='';
   people.forEach((n,i)=>{
@@ -520,28 +345,29 @@ function renderNames(){
 
 let picking=false;
 function pickPerson(){
-  if(picking||people.length===0)return; picking=true;
+  if(picking||people.length===0)return;picking=true;
   const btn=document.getElementById('pickBtn'),res=document.getElementById('pickResult');
   btn.disabled=true;
-  const msg=whoMsgs[Math.floor(Math.random()*whoMsgs.length)];
-  res.innerHTML=`<div style="color:#94a3b8;font-size:1.1em;">${msg}</div>`;
+  res.innerHTML=`<div style="color:#94a3b8;font-size:1.1em;">${whoMsgs[Math.floor(Math.random()*whoMsgs.length)]}</div>`;
   let count=0;
   const flash=setInterval(()=>{
     const r=people[Math.floor(Math.random()*people.length)];
     const c=nameColors[people.indexOf(r)%nameColors.length];
-    res.innerHTML=`<div style="font-size:2.2em;font-weight:900;color:${c};transition:none;">${r}</div>`;
+    res.innerHTML=`<div style="font-size:2.2em;font-weight:900;color:${c};">${r}</div>`;
     count++;
     if(count>20+Math.random()*10){
       clearInterval(flash);
       const final=people[Math.floor(Math.random()*people.length)];
       const fc=nameColors[people.indexOf(final)%nameColors.length];
-      res.innerHTML=`<div style="font-size:2.5em;font-weight:900;color:${fc};animation:popIn 0.3s ease-out;">🫵 ${final}</div><div style="color:#94a3b8;font-size:0.9em;margin-top:4px;">각오하세요</div>`;
+      res.innerHTML=`<div style="font-size:2.5em;font-weight:900;color:${fc};animation:popIn 0.3s;">🫵 ${final}</div><div style="color:#94a3b8;font-size:0.9em;margin-top:4px;">각오하세요</div>`;
       spawnStars(document.getElementById('pickBtn'));
-      addChat('📌',`🫵 ${final}님 당첨!`,'#fbbf24');
-      picking=false; btn.disabled=false;
+      addMemo('🫵',`${final}님 당첨!`,'#fbbf24');
+      picking=false;btn.disabled=false;
     }
   },100);
 }
+
+buildStrip(1);
 </script>
 </body>
 </html>
