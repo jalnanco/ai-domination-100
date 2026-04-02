@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>AI 지구정복 124선</title>
+<title>AI 지구정복 125선</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -83,7 +83,7 @@
 <body>
 
 <div class="header">
-  <h1>🤖 AI로 지구를 지배하는 법 — 이치방 쿠지 124선</h1>
+  <h1>🤖 AI로 지구를 지배하는 법 — 이치방 쿠지 125선</h1>
   <p>강의 중 이 리스트에서 🎰이치방 쿠지(뽑기)! 참가자가 골라서 즉석 시연.</p>
   <div class="date">4/3(금) 저녁 7:30 · LCK 직관방/관전방 디스코드 노가리방</div>
   <p style="color:#64748b;margin-top:8px;font-size:0.9em;">협찬: 헤이 · 방장 | 강사: 난코</p>
@@ -136,7 +136,7 @@
 </div>
 
 <div class="footer">
-  <div class="cta">🎰 이치방 쿠지! 124가지 중 랜덤으로 시전합니다</div>
+  <div class="cta">🎰 이치방 쿠지! 125가지 중 랜덤으로 시전합니다</div>
   <p>뭐가 나올지는 참가자의 운 + 선택에 달림</p>
   <div style="display:inline-block;margin-top:12px;background:rgba(88,101,242,0.2);border:1px solid rgba(88,101,242,0.4);color:#7289da;padding:8px 24px;border-radius:8px;font-weight:700;font-size:1.05em;">🎮 4/3(금) 19:30 · LCK 직관방/관전방 디스코드 노가리방</div>
   <p style="margin-top:8px;color:#475569;font-size:0.85em;">협찬: 헤이 · 방장 | discord.gg/CfqghZq</p>
@@ -159,16 +159,16 @@ const rawItems = [
   '참가자 AI 디베이트 — 판정','참가자 vs AI 말싸움','AI 역질문 성격 분석','누가 더 OO한가 배틀','강의 후기 + MVP 선정',
   'AI가 만든 웹 게임 즉석 플레이','실시간 디코봇 → 서버 배포','참가자 전원 궁합표','실시간 감정 대시보드','AI가 강의 실시간 요약','전원 이세카이 파티 편성','"노가리방 뉴스" 리포트','전원 등장 AI 단편 소설','서버 로고 디자인','"롤 이력서" 생성',
   '참가자로 LCK 팀 편성','강의 내용 시험 10문제','맞춤 AI 활용법 리포트','난코 1년 AI 데이터 시각화','AI끼리 롤 밴픽 대결','채팅 키워드 → AI 그림','직관방/관전방 역사 연대기','전원 애니 캐릭터 관계도','"난코 평전" 위인전','전원 2026 AI 운세',
-  '방장님 사생활 예측 (동의 하에)','상무님 한방 통과 보고서 생성기','하기 싫은 일 시켰을 때 AI 대처법','3년에 2배 가는 주식 스크리닝 (면책 포함)'
+  '방장님 사생활 예측 (동의 하에)','상무님 한방 통과 보고서 생성기','하기 싫은 일 시켰을 때 AI 대처법','3년에 2배 가는 주식 스크리닝 (면책 포함)','네이버 플레이스 상위 노출시키는 법'
 ];
 
 // 난이도 (원본 기준, 셔플 후에도 유지)
-const rawStars=[1,1,1,2,1,1,1,1,2,1, 1,1,2,2,2,1,1,1,1,1, 1,1,1,1,1,1,1,1,2,1, 1,1,1,1,1,1,2,1,1,2, 1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,2,1,1,1, 3,3,2,2,3,3,2,3,1,2, 2,2,2,2,2, 2,2,1,1,1,2,2,1,1,1, 1,1,1,1,1, 1,2,2,1,1, 2,1,1,1,1, 4,4,4,4,4,4,4,4,4,4, 4,4,5,5,4,4,4,4,5,4, 3,2,1,3];
+const rawStars=[1,1,1,2,1,1,1,1,2,1, 1,1,2,2,2,1,1,1,1,1, 1,1,1,1,1,1,1,1,2,1, 1,1,1,1,1,1,2,1,1,2, 1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,2,1,1,1, 3,3,2,2,3,3,2,3,1,2, 2,2,2,2,2, 2,2,1,1,1,2,2,1,1,1, 1,1,1,1,1, 1,2,2,1,1, 2,1,1,1,1, 4,4,4,4,4,4,4,4,4,4, 4,4,5,5,4,4,4,4,5,4, 3,2,1,3,2];
 
 // 섞기 (한 번만, 순서 고정)
 const seed=42;let rng=seed;function srand(){rng=(rng*16807)%2147483647;return(rng-1)/2147483646;}
-const order=[...Array(124).keys()];
-for(let i=123;i>0;i--){const j=Math.floor(srand()*(i+1));[order[i],order[j]]=[order[j],order[i]];}
+const order=[...Array(125).keys()];
+for(let i=124;i>0;i--){const j=Math.floor(srand()*(i+1));[order[i],order[j]]=[order[j],order[i]];}
 
 const items={}, itemStars={};
 order.forEach((origIdx,newIdx)=>{
@@ -190,7 +190,7 @@ function rankHtml(s){const r=rankInfo[s];return `<span class="rank ${r.cls}">${r
 // 리스트 렌더링 (1~120 순서)
 function renderList(){
   const g=document.getElementById('itemList');g.innerHTML='';
-  for(let i=1;i<=124;i++){
+  for(let i=1;i<=125;i++){
     const d=document.createElement('div');d.className='item';d.id='item-'+i;
     d.innerHTML=`<span class="num">${i}</span>${rankHtml(itemStars[i])}<span class="text">${items[i]}</span>`;
     g.appendChild(d);
@@ -199,7 +199,7 @@ function renderList(){
 renderList();
 
 // 룰렛
-const TOTAL=124,ITEM_H=80;
+const TOTAL=125,ITEM_H=80;
 let spinning=false,usedItems=new Set(),historyCount=0;
 
 function buildStrip(ti){
